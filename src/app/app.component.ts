@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Subject, Observable, forkJoin, combineLatest } from 'rxjs';
 import { debounceTime, filter, switchMap, tap } from 'rxjs/operators';
-import { MockDataService } from './services/mock-data.service';
+import { MockDataService } from '/shared/mocks/mock.ts';
+
 
 @Component({
   selector: 'app-root',
@@ -10,43 +11,29 @@ import { MockDataService } from './services/mock-data.service';
 })
 export class AppComponent {
   title = 'courses-app';
-  searchTermByCharacters = new Subject<string>();
-  characters$: Observable<string[]>;
-  planetAndCharactersResults$!: Observable<string[]>; 
-  isLoading = false;
 
-  constructor(private mockDataService: MockDataService) {
+  courses = [
+    {
+      title: 'Angular Fundamentals',
+      description: 'Learn the fundamentals of Angular.',
+      creationDate: new Date(),
+      duration: 120,
+      authors: ['John Doe', 'Jane Smith']
+    },
+    // Add more courses as needed
+  ];
 
-    this.characters$ = this.searchTermByCharacters.pipe(
-      filter(term => term.length >= 3), 
-      debounceTime(300), 
-      switchMap(term => this.mockDataService.getCharacters(term)) 
-    );
+  editable = true;
 
-  
-    combineLatest([
-      this.mockDataService.getCharactersLoader(),
-      this.mockDataService.getPlanetLoader()
-    ]).pipe(
-      tap(([charLoader, planetLoader]) => {
-        this.isLoading = charLoader || planetLoader;
-      })
-    ).subscribe();
+  handleShowCourse(course: any) {
+    console.log('Show course:', course);
   }
 
-  changeCharactersInput(term: string) {
-    this.searchTermByCharacters.next(term);
+  handleEditCourse(course: any) {
+    console.log('Edit course:', course);
   }
 
-  loadCharactersAndPlanets() {
-    this.planetAndCharactersResults$ = forkJoin([
-      this.mockDataService.getCharacters(''),
-      this.mockDataService.getPlanets()
-    ]).pipe(
-      tap(([characters, planets]) => {
-        console.log('Characters:', characters);
-        console.log('Planets:', planets);
-      })
-    );
+  handleDeleteCourse(course: any) {
+    console.log('Delete course:', course);
   }
 }

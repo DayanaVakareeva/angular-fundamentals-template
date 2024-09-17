@@ -11,12 +11,24 @@
   min-height: 170px;
   width: 80vw;
   background-color: $color-white;
+  position: absolute; 
+  top: -5558px; 
+  left: 2312px; 
+  gap: 0px; 
+  opacity: 0; 
 
   &__description {
     flex: 2;
 
     &-title {
       font-weight: bold;
+      font-size: 24px; 
+      margin-bottom: 16px; 
+    }
+
+    &-text {
+      font-size: 16px; 
+      color: $color-dark-gray; 
     }
   }
 
@@ -29,6 +41,23 @@
 
     &-text {
       margin-top: 16px;
+      font-size: 14px;
+      color: $color-gray;
     }
+
+    &-actions {
+      display: flex;
+      gap: 8px; 
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 8px; 
+  }
+
+  .course-card__duration,
+  .course-card__date {
+    font-weight: bold; 
   }
 }

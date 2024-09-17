@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-course-info',
@@ -6,5 +6,26 @@ import { Component } from '@angular/core';
   styleUrls: ['./course-info.component.scss']
 })
 export class CourseInfoComponent {
-  // Use the names for the input `course`.
+  @Input() title: string;
+  @Input() description: string;
+  @Input() id: string;
+  @Input() duration: number;
+  @Input() date: string;
+  @Input() authors: string[];
+
+  @Output() edit = new EventEmitter<string>();
+  @Output() delete = new EventEmitter<string>();
+  @Output() back = new EventEmitter<void>();
+
+  editCourse() {
+    this.edit.emit(this.id);
+  }
+
+  deleteCourse() {
+    this.delete.emit(this.id);
+  }
+
+  goBack() {
+    this.back.emit();
+  }
 }

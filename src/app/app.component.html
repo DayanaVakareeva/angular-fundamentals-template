@@ -1,13 +1,36 @@
-<app-header></app-header>
+<app-header>
+  <span>Username</span>
+  <app-button buttonText="Logout" iconName="faSignOutAlt"></app-button>
+</app-header>
 <div class="app-root">
   <!-- Search component -->
   <!--<app-search></app-search>-->
 
   <!-- Info component -->
-  <!--<app-info></app-info>-->
+  <app-info title="Information Title" text="This is some optional text.">
+    <app-button buttonText="Learn More" iconName="faInfoCircle"></app-button>
+  </app-info>
 
   <!-- Course Card component -->
-  <!--<app-course-card></app-course-card>-->
+  <app-course-card
+  title="Angular Fundamentals"
+  description="Learn the fundamentals of Angular."
+  [creationDate]="new Date()"
+  [duration]="120"
+  [authors]="['John Doe', 'Jane Smith']"
+  [editable]="true"
+  (clickOnShow)="handleShowCourse()">
+  <app-button buttonText="Custom Button" iconName="faCustomIcon"></app-button>
+</app-course-card>
+
+  <!-- Course List component -->
+  <app-course-list 
+    [courses]="courses" 
+    [editable]="true"
+    (showCourse)="handleShowCourse($event)"
+    (editCourse)="handleEditCourse($event)"
+    (deleteCourse)="handleDeleteCourse($event)">
+  </app-course-list>
 
   <!-- Login Form component -->
   <!--<app-login-form></app-login-form>-->

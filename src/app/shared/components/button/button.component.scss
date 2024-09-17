@@ -4,15 +4,30 @@
     justify-content: center;
     align-items: center;
     padding: 13px 36px;
-    gap: 10px;
+    gap: 0px; 
     background: #007298;
     border-radius: 4px;
     color: #fff;
     text-transform: uppercase;
     cursor: pointer;
+    width: 845px; 
+    height: 60px; 
+    position: absolute;
+    left: 2312px; 
+    opacity: 0;
+    transition: background 0.3s;
 
     &:hover {
         background: #016486;
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(0, 114, 152, 0.5); 
+    }
+
+    &:active {
+        background: #005f73; 
     }
 
     &__single-icon {
